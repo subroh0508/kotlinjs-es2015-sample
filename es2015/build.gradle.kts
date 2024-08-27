@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.jetbrains.compose)
@@ -9,6 +11,7 @@ kotlin {
         browser {
             commonWebpackConfig {
                 outputFileName = "index.js"
+
             }
         }
         binaries.executable()
@@ -30,4 +33,8 @@ kotlin {
     }
 }
 
-
+tasks.withType<KotlinJsCompile>().configureEach {
+    compilerOptions {
+        target.set("es2015")
+    }
+}
