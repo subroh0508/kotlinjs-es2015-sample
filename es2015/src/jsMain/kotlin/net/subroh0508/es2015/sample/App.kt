@@ -1,7 +1,6 @@
 package net.subroh0508.es2015.sample
 
 import androidx.compose.runtime.*
-
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Div
 import org.jetbrains.compose.web.dom.Img
@@ -22,7 +21,7 @@ fun App() {
         if (showContent) {
             val greeting = remember { Greeting().greet() }
             Div {
-                //Img(src = Res.drawable.compose_multiplatform.toString())
+                Img(src = res("drawable/mitsumine.webp"))
                 Text("Compose: $greeting")
             }
         }

@@ -11,7 +11,6 @@ kotlin {
         browser {
             commonWebpackConfig {
                 outputFileName = "index.js"
-
             }
         }
         binaries.executable()
