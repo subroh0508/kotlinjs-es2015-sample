@@ -1,29 +1,36 @@
 package net.subroh0508.es2015.sample
 
-import androidx.compose.runtime.*
-import org.jetbrains.compose.web.dom.Button
-import org.jetbrains.compose.web.dom.Div
-import org.jetbrains.compose.web.dom.Img
-import org.jetbrains.compose.web.dom.Text
+import mui.material.Button
+import net.subroh0508.es2015.sample.theme.ThemeModule
+import react.FC
+import react.Props
+import react.dom.html.ReactHTML.div
+import react.dom.html.ReactHTML.img
+import react.useState
 
-@Composable
-fun App() {
-    var showContent by remember { mutableStateOf(false) }
-    Div {
-        Button(
-            attrs = {
-                onClick { showContent = !showContent }
-            }
-        ) {
-            Text("Click me!")
+val App = FC<Props> {
+    ThemeModule {
+        val (showContent, setShowContent) = useState(false)
+
+        Button {
+            onClick = { setShowContent(!showContent) }
+
+            +"Click me!"
         }
 
         if (showContent) {
-            val greeting = remember { Greeting().greet() }
-            Div {
-                Img(src = res("drawable/mitsumine.webp"))
-                Text("Compose: $greeting")
-            }
+            GreetingFunction {}
         }
+    }
+}
+
+private val GreetingFunction = FC<Props> {
+    val (greeting) = useState(Greeting().greet())
+
+    div {
+        img {
+            src = res("drawable/mitsumine.webp")
+        }
+        +"Compose: $greeting"
     }
 }
